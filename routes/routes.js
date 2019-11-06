@@ -1,5 +1,7 @@
+const express = require('express')
+const router = express.Router
 const post_controller = require('@/controllers/admin')
 
-module.exports = app => {
-    app.use('/post', post_controller)
-}
+router.post('/post', post_controller)
+
+module.exports = router
