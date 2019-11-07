@@ -1,6 +1,6 @@
-const Post = require('@/models/post');
+const Post = require('../models/post');
 
-exports.postAddPost = (req, res, next) => {
+var postAddPost = (req, res) => {
   const author = req.body.author;
   const title = req.body.title;
   const thumbnail = req.body.thumbnail;
@@ -16,4 +16,11 @@ exports.postAddPost = (req, res, next) => {
     previewText: previewText,
     updatedDate: updatedDate
   })
+  .then(post => {
+    res.send({id: post.id})
+  })
+}
+
+module.exports = {
+  postAddPost: postAddPost
 }

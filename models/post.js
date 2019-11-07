@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const sequelize = require('@/util/database');
+const sequelize = require('../util/database');
 
 const Post = sequelize.define('post', {
   id: {
@@ -33,6 +33,9 @@ const Post = sequelize.define('post', {
     type: Sequelize.DATE,
     allowNull: false
   }
-});
+},
+
+{timestamps: false}
+);
 
 module.exports = Post;

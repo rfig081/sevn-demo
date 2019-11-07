@@ -18,17 +18,10 @@ export default {
 
   methods: {
     onSubmitted(postData) {
-      axios.post('http://localhost:3000/post', postData)
-      .then(res => {
-        console.log(res)
+      this.$store.dispatch('addPost', postData)
+      .then(() => {
+        this.$router.push('/admin')
       })
-      .catch(err => {
-        console.log(err)
-      })
-      // this.$store.dispatch('addPost', postData)
-      // .then(() => {
-      //   this.$router.push('/admin')
-      // })
     }
   }
 
