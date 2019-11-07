@@ -7,6 +7,22 @@ var getPosts = (req, res) => {
   })
 }
 
+var getPost = (req, res) => {
+  // console.log(req.query)
+  const postID = parseInt(req.query.id)
+  Post.findAll({
+    where: {
+      id: postID
+    }
+  })
+  .then(post => {
+    // console.log(post)
+    res.send(post)
+  })
+}
+
+
 module.exports = {
-  getPosts: getPosts
+  getPosts: getPosts,
+  getPost: getPost
 }

@@ -29,14 +29,15 @@ const createStore = () => {
           .get('http://localhost:3000/show-posts')
           // .get('https://nuxt-demo-a8021.firebaseio.com/posts.json')
           .then(res => {
-            const postsArray = [];
-            for (const key in res.data) {
-              postsArray.push({
-                ...res.data[key],
-                id: key
-              });
-            }
-            vuexContext.commit("setPosts", postsArray);
+            vuexContext.commit("setPosts", res.data)
+            // const postsArray = [];
+            // for (const key in res.data) {
+            //   postsArray.push({
+            //     ...res.data[key],
+            //     id: key
+            //   });
+            // }
+            // vuexContext.commit("setPosts", postsArray);
           })
           .catch(e => context.error(e));
       },
@@ -45,8 +46,6 @@ const createStore = () => {
           ...post,
           updatedDate: new Date()
         }
-        console.log('Created Data')
-        console.log(createdPost)
         return axios.post('http://localhost:3000/post', createdPost)
         .then(res => {
           console.log(res.data)

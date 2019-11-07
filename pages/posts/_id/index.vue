@@ -19,10 +19,17 @@ import axios from 'axios'
 
 export default {
   asyncData(context) {
-    return axios.get('https://nuxt-demo-a8021.firebaseio.com/posts/' + context.params.id + '.json')
+    const postID = {id: context.params.id}
+    return axios.get('http://localhost:3000/show-post', {
+      params: {
+        id: context.params.id
+      }
+    })
+    // return axios.get('https://nuxt-demo-a8021.firebaseio.com/posts/' + context.params.id + '.json')
     .then(res => {
+      const data = res.data[0]
       return {
-        loadedPost: res.data
+        loadedPost: data
       }
     })
     .catch(e => context.error(e))
