@@ -2,7 +2,7 @@
   <div class="admin-post-page">
     <section class="update-form">
       <AdminPostForm :post="loadedPost" @submit="onSubmitted"/>
-    </section> 
+    </section>
   </div>
 </template>
 
@@ -17,12 +17,18 @@ export default {
   },
 
   asyncData(context) {
+    // const postID = {id: context.params.postId}
+    // return axios.get('http://localhost:3000/edit-post', {
+    //   params: {
+    //     id: context.params.id
+    //   }
+    // })
     return axios.get('https://nuxt-demo-a8021.firebaseio.com/posts/' + context.params.postId + '.json')
     .then(res => {
       return {
         loadedPost: {
-          ...res.data,
-          id: context.params.postId
+          // ...res.data,
+          // id: context.params.postId
         }
       }
     })
